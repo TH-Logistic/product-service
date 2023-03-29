@@ -17,8 +17,7 @@ public class CreateProductRequest {
     @NotBlank(message = "Invalid unit")
     String unit;
     @NotNull(message = "Invalid type")
-    @Min(value = 1, message = "Invalid type")
-    @Max(value = 9, message = "Invalid type")
+    @Size(min = 1, max = 1, message = "Invalid type")
     Integer type;
     @DecimalMin(value = "0.0", message = "Invalid base price")
     Double basePrice;
