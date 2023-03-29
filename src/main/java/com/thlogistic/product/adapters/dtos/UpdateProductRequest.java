@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonNaming(PropertyNamingStrategy.SnakeCaseStrategy.class)
-public class CreateProductRequest {
+public class UpdateProductRequest {
     @NotBlank(message = "Invalid name")
     String name;
     @NotBlank(message = "Invalid unit")
