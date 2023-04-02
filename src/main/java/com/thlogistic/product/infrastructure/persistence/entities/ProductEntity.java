@@ -1,7 +1,7 @@
 package com.thlogistic.product.infrastructure.persistence.entities;
 
 import com.thlogistic.product.core.entities.Product;
-import lombok.AllArgsConstructor;
+import com.thlogistic.product.core.entities.ProductType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;

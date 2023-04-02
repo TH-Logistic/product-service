@@ -4,7 +4,7 @@ import com.thlogistic.product.adapters.dtos.CreateProductRequest;
 import com.thlogistic.product.adapters.dtos.CreateProductResponse;
 import com.thlogistic.product.core.ports.ProductRepository;
 import com.thlogistic.product.infrastructure.persistence.entities.ProductEntity;
-import com.thlogistic.product.infrastructure.persistence.entities.ProductType;
+import com.thlogistic.product.core.entities.ProductType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

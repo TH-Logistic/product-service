@@ -1,4 +1,4 @@
-package com.thlogistic.product.infrastructure.persistence.entities;
+package com.thlogistic.product.core.entities;
 
 public enum ProductType {
     DANGEROUS(1),
@@ -13,14 +13,17 @@ public enum ProductType {
 
     public final Integer typeCode;
 
+    public static final int MIN_VALUE = 1;
+    public static final int MAX_VALUE = 9;
+
     ProductType(Integer code) {
         typeCode = code;
     }
 
     public static ProductType fromInt(Integer value) {
-        for (ProductType status: values()) {
-            if (status.typeCode.equals(value)) {
-                return status;
+        for (ProductType type: values()) {
+            if (type.typeCode.equals(value)) {
+                return type;
             }
         }
         return null;
