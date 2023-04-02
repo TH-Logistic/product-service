@@ -31,6 +31,6 @@ public class ProductController extends BaseController implements ProductResource
     @Override
     public ResponseEntity<Object> updateProduct(UpdateProductRequest request, String id) {
         updateProductUseCase.execute(Pair.of(id, request));
-        return successResponse(null, null);
+        return successResponse(true, null);
     }
 }

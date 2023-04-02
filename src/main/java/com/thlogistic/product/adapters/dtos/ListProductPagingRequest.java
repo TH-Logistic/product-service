@@ -21,6 +21,6 @@ public class ListProductPagingRequest extends BasePagingRequest {
 
     @DecimalMin(value = "0.0", message = "Invalid max price")
     Double maxPrice;
-    @NotEmpty(message = "Invalid types")
+
     List<Integer> types;
 }

@@ -1,5 +1,7 @@
 package com.thlogistic.product.core.entities;
 
+import com.thlogistic.product.aop.exception.InvalidProductTypeException;
+
 public enum ProductType {
     DANGEROUS(1),
     MACHINE(2),
@@ -13,9 +15,6 @@ public enum ProductType {
 
     public final Integer typeCode;
 
-    public static final int MIN_VALUE = 1;
-    public static final int MAX_VALUE = 9;
-
     ProductType(Integer code) {
         typeCode = code;
     }
@@ -26,7 +25,7 @@ public enum ProductType {
                 return type;
             }
         }
-        return null;
+        throw new InvalidProductTypeException("Product type not found");
     }
 
 }

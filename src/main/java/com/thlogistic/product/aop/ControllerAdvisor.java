@@ -2,6 +2,7 @@ package com.thlogistic.product.aop;
 
 import com.thlogistic.product.adapters.dtos.ErrorResponse;
 import com.thlogistic.product.aop.exception.DataNotFoundException;
+import com.thlogistic.product.aop.exception.InvalidProductTypeException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -26,6 +27,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DataNotFoundException.class)
     public ResponseEntity<Object> handleNotFoundException(
             DataNotFoundException ex, WebRequest request) {
+        Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(InvalidProductTypeException.class)
+    public ResponseEntity<Object> handleInvalidTypeException(
+            InvalidProductTypeException ex, WebRequest request) {
         Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }

@@ -13,7 +13,7 @@ public class Product {
     String id;
     String name;
     String unit;
-    List<ProductType> type;
+    List<ProductType> types;
     Double basePrice;
 
 
