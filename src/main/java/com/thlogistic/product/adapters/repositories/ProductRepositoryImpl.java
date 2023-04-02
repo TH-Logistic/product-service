@@ -1,8 +1,12 @@
 package com.thlogistic.product.adapters.repositories;
 
+import com.thlogistic.product.core.entities.ProductType;
 import com.thlogistic.product.core.ports.ProductRepository;
 import com.thlogistic.product.infrastructure.persistence.entities.ProductEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,7 +33,25 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public List<ProductEntity> findAll() {
-        return repository.findAll();
+    public BasePagingQueryResult<List<ProductEntity>> list(Double minPrice, Double maxPrice, List<Integer> types, Integer page, Integer size) {
+        Pageable pageable = PageRequest.of(page, size);
+        if (maxPrice == null) {
+            maxPrice = Double.MAX_VALUE;
+        }
+        Page<ProductEntity> products;
+        if (types == null || types.isEmpty()) {
+            products = repository.findByBasePriceBetween(minPrice, maxPrice, pageable);
+        } else {
+            List<ProductType> typeList = types.stream().map(ProductType::fromInt).toList();
+            products = repository.findByBasePriceBetweenAndTypesIs(minPrice, maxPrice, typeList, pageable);
+        }
+
+        BasePagingQueryResult<List<ProductEntity>> result = new BasePagingQueryResult<>();
+        result.data = products.getContent();
+        result.total = products.getTotalElements();
+        result.totalPage = products.getTotalPages();
+        return result;
     }
+
+
 }

@@ -4,7 +4,7 @@ import com.thlogistic.product.adapters.dtos.CreateProductRequest;
 import com.thlogistic.product.adapters.dtos.CreateProductResponse;
 import com.thlogistic.product.core.ports.ProductRepository;
 import com.thlogistic.product.infrastructure.persistence.entities.ProductEntity;
-import com.thlogistic.product.infrastructure.persistence.entities.ProductType;
+import com.thlogistic.product.core.entities.ProductType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
         ProductEntity entity = new ProductEntity(
                 createProductRequest.getName(),
                 createProductRequest.getUnit(),
-                ProductType.fromInt(createProductRequest.getType()),
+                createProductRequest.getTypes().stream().map(ProductType::fromInt).toList(),
                 createProductRequest.getBasePrice()
         );
         String id = repository.insert(entity);

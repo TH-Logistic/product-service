@@ -1,4 +1,4 @@
-package com.thlogistic.product.core.entities;
+package com.thlogistic.product.adapters.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,12 +9,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class GetProductResponse {
     String id;
     String name;
     String unit;
-    List<ProductType> type;
+    List<Integer> types;
     Double basePrice;
-
-
 }
