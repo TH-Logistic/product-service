@@ -1,6 +1,5 @@
 package com.thlogistic.product.core.entities;
 
-import com.thlogistic.product.infrastructure.persistence.entities.ProductType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,9 +1,8 @@
 package com.thlogistic.product.adapters.controllers;
 
-import com.thlogistic.product.adapters.dtos.CreateProductRequest;
-import com.thlogistic.product.adapters.dtos.CreateProductResponse;
-import com.thlogistic.product.adapters.dtos.UpdateProductRequest;
+import com.thlogistic.product.adapters.dtos.*;
 import com.thlogistic.product.core.usecases.CreateProductUseCase;
+import com.thlogistic.product.core.usecases.ListProductUseCase;
 import com.thlogistic.product.core.usecases.UpdateProductUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
@@ -15,6 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductController extends BaseController implements ProductResource {
     private final CreateProductUseCase createProductUseCase;
     private final UpdateProductUseCase updateProductUseCase;
+    private final ListProductUseCase listProductUseCase;
+
+    @Override
+    public ResponseEntity<Object> listProduct(ListProductPagingRequest request) {
+        BasePagingResponse<GetProductResponse> result = listProductUseCase.execute(request);
+        return successResponse(result, null);
+    }
 
     @Override
     public ResponseEntity<Object> createProduct(CreateProductRequest request) {

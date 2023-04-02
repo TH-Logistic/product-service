@@ -7,6 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateProductResponse {
+public class GetProductResponse {
     String id;
+    String name;
+    String unit;
+    Integer type;
+    Double basePrice;
 }

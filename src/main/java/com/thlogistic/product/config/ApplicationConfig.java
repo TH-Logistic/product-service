@@ -1,9 +1,11 @@
 package com.thlogistic.product.config;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 @Configuration
 public class ApplicationConfig {
@@ -14,5 +16,12 @@ public class ApplicationConfig {
                 .setMatchingStrategy(MatchingStrategies.STRICT)
                 .setSkipNullEnabled(true);
         return modelMapper;
+    }
+
+    @Bean
+    public Jackson2ObjectMapperBuilder jacksonBuilder() {
+        Jackson2ObjectMapperBuilder b = new Jackson2ObjectMapperBuilder();
+        b.propertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
+        return b;
     }
 }
