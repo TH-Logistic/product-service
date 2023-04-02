@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @Document("product")
@@ -15,13 +17,13 @@ public class ProductEntity {
     String id;
     String name;
     String unit;
-    ProductType type;
+    List<ProductType> types;
     Double basePrice;
 
-    public ProductEntity(String name, String unit, ProductType type, Double basePrice) {
+    public ProductEntity(String name, String unit, List<ProductType> types, Double basePrice) {
         this.name = name;
         this.unit = unit;
-        this.type = type;
+        this.types = types;
         this.basePrice = basePrice;
     }
 
@@ -30,7 +32,7 @@ public class ProductEntity {
                 this.id,
                 this.name,
                 this.unit,
-                this.type,
+                this.types,
                 this.basePrice
         );
     }

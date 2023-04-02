@@ -33,17 +33,17 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
-    public BasePagingQueryResult<List<ProductEntity>> list(Double minPrice, Double maxPrice, Integer productType, Integer page, Integer size) {
+    public BasePagingQueryResult<List<ProductEntity>> list(Double minPrice, Double maxPrice, List<Integer> types, Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         if (maxPrice == null) {
             maxPrice = Double.MAX_VALUE;
         }
         Page<ProductEntity> products;
-        if (productType == null) {
+        if (types == null || types.isEmpty()) {
             products = repository.findByBasePriceBetween(minPrice, maxPrice, pageable);
         } else {
-            ProductType type = ProductType.fromInt(productType);
-            products = repository.findByBasePriceBetweenAndTypeIs(minPrice, maxPrice, type, pageable);
+            List<ProductType> typeList = types.stream().map(ProductType::fromInt).toList();
+            products = repository.findByBasePriceBetweenAndTypesIs(minPrice, maxPrice, typeList, pageable);
         }
 
         BasePagingQueryResult<List<ProductEntity>> result = new BasePagingQueryResult<>();

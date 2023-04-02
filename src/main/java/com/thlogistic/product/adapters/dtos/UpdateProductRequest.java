@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,10 +15,10 @@ public class UpdateProductRequest {
     String name;
     @NotBlank(message = "Invalid unit")
     String unit;
-    @NotNull(message = "Invalid type")
-    @Min(value = 1, message = "Invalid type")
-    @Max(value = 9, message = "Invalid type")
-    Integer type;
+    @NotNull(message = "Invalid types")
+    @Min(value = 1, message = "Invalid types")
+    @Max(value = 9, message = "Invalid types")
+    List<Integer> types;
     @DecimalMin(value = "0.0", message = "Invalid base price")
     Double basePrice;
 }

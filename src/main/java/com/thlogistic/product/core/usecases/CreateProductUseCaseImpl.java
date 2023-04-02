@@ -19,7 +19,7 @@ public class CreateProductUseCaseImpl implements CreateProductUseCase {
         ProductEntity entity = new ProductEntity(
                 createProductRequest.getName(),
                 createProductRequest.getUnit(),
-                ProductType.fromInt(createProductRequest.getType()),
+                createProductRequest.getTypes().stream().map(ProductType::fromInt).toList(),
                 createProductRequest.getBasePrice()
         );
         String id = repository.insert(entity);

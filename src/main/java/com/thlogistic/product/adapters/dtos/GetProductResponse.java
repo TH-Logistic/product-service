@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,6 +13,6 @@ public class GetProductResponse {
     String id;
     String name;
     String unit;
-    Integer type;
+    List<Integer> types;
     Double basePrice;
 }

@@ -13,5 +13,5 @@ public interface ProductRepository {
 
     Optional<ProductEntity> findById(String id);
 
-    BasePagingQueryResult<List<ProductEntity>> list(Double minPrice, Double maxPrice, Integer productType, Integer page, Integer size);
+    BasePagingQueryResult<List<ProductEntity>> list(Double minPrice, Double maxPrice, List<Integer> types, Integer page, Integer size);
 }

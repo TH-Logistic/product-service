@@ -1,12 +1,14 @@
 package com.thlogistic.product.adapters.dtos;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -19,5 +21,6 @@ public class ListProductPagingRequest extends BasePagingRequest {
 
     @DecimalMin(value = "0.0", message = "Invalid max price")
     Double maxPrice;
-    Integer type;
+    @NotEmpty(message = "Invalid types")
+    List<Integer> types;
 }

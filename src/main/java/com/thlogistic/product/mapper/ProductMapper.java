@@ -9,7 +9,7 @@ public class ProductMapper {
         response.setId(entity.getId());
         response.setName(entity.getName());
         response.setUnit(entity.getUnit());
-        response.setType(entity.getType().typeCode);
+        response.setTypes(entity.getTypes().stream().map(e -> e.typeCode).toList());
         response.setBasePrice(entity.getBasePrice());
         return response;
     }
