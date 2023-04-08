@@ -27,7 +27,7 @@ public class ProductEntity {
         this.basePrice = basePrice;
     }
 
-    public Product fromThis() {
+    public Product toProduct() {
         return new Product(
                 this.id,
                 this.name,
