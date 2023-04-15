@@ -1,9 +1,6 @@
 version: '3'
 services:
   product_service:
-    build:
-      context: .
-      dockerfile: Dockerfile
     container_name: product_service_container
     image: thinhlh.com:5000/product_service:latest
     ports:
