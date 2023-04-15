@@ -5,8 +5,9 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: product_service
-    image: product_service:latest
+    image: thinhlh.com:5000/product_service:latest
+    platform: linux/amd64
     ports:
       - "8080:8080"
     external_links:
-      - "mongo_container:mongo"
+      - mongo_container:mongo
