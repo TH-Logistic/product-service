@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,10 +41,10 @@ public class ProductRepositoryImpl implements ProductRepository {
         }
         Page<ProductEntity> products;
         if (types == null || types.isEmpty()) {
-            products = repository.findByBasePriceBetween(minPrice, maxPrice, pageable);
+            products = repository.findAllByBasePriceBetween(minPrice, maxPrice, pageable);
         } else {
             List<ProductType> typeList = types.stream().map(ProductType::fromInt).toList();
-            products = repository.findByBasePriceBetweenAndTypesIs(minPrice, maxPrice, typeList, pageable);
+            products = repository.findAllByBasePriceBetweenAndTypesIs(minPrice, maxPrice, typeList, pageable);
         }
 
         BasePagingQueryResult<List<ProductEntity>> result = new BasePagingQueryResult<>();

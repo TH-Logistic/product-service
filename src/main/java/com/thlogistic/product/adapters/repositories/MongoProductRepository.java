@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface MongoProductRepository extends MongoRepository<ProductEntity, String> {
-    Page<ProductEntity> findByBasePriceBetween(Double minPrice, Double maxPrice, Pageable pageable);
+    Page<ProductEntity> findAllByBasePriceBetween(Double minPrice, Double maxPrice, Pageable pageable);
 
-    Page<ProductEntity> findByBasePriceBetweenAndTypesIs(Double minPrice, Double maxPrice, List<ProductType> types, Pageable pageable);
+    Page<ProductEntity> findAllByBasePriceBetweenAndTypesIs(Double minPrice, Double maxPrice, List<ProductType> types, Pageable pageable);
 }
