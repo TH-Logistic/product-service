@@ -4,13 +4,13 @@ import com.thlogistic.product.aop.exception.InvalidProductTypeException;
 
 public enum ProductType {
     DANGEROUS(1),
-    MACHINE(2),
-    ELECTRONIC(3),
-    USE_IN_AGRICULTURE(4),
-    FOOD(5),
-    COSMETIC(6),
-    MEDICINE(7),
-    FRAGILE(8),
+    FRAGILE(2),
+    MACHINE(3),
+    ELECTRONIC(4),
+    AGRICULTURAL(5),
+    FOOD(6),
+    COSMETIC(7),
+    MEDICINE(8),
     OTHERS(9);
 
     public final Integer typeCode;
