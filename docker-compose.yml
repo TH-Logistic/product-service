@@ -1,9 +1,21 @@
 version: '3'
 services:
-  product_service:
-    container_name: product_service_container
-    image: thinhlh.com:5000/product_service:latest
+  product:
+    container_name: product_container
+    image: www.thinhlh.com/product_service:latest
     ports:
       - "8080:8080"
-    external_links:
-      - mongo_container:mongo
+    environment:
+      - MONGO_INITDB_HOST
+      - MONGO_INITDB_PORT
+      - MONGO_INITDB_DATABASE
+      - MONGO_INITDB_ROOT_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD
+    networks:
+      - app_network
+    restart: on-failure
+
+networks:
+  app_network:
+    external: true
+    driver: bridge
