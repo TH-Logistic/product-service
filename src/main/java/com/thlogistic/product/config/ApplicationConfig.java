@@ -14,9 +14,4 @@ public class ApplicationConfig {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT).setSkipNullEnabled(true);
         return modelMapper;
     }
-
-    @Bean
-    RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 }
