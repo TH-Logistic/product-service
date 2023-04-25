@@ -15,8 +15,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 @Component
@@ -37,8 +35,12 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                     .encoder(new GsonEncoder())
                     .decoder(new GsonDecoder())
                     .target(AuthorizationClient.class, AUTHORIZATION_URL);
-            BaseResponse<PermissionDto> permissionResponse = authorizationClient.checkPermission(token, roles);
-            if (!permissionResponse.getSuccess()) {
+            try {
+                BaseResponse<PermissionDto> permissionResponse = authorizationClient.checkPermission(token, roles);
+                if (!permissionResponse.getSuccess()) {
+                    throw new UnauthorizedException("Invalid token credential");
+                }
+            } catch (Exception e) {
                 throw new UnauthorizedException("Invalid token credential");
             }
         } else {
