@@ -25,7 +25,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
-
         String token = request.getHeader(AUTHORIZATION_HEADER);
         List<String> roles = List.of("admin");
 
