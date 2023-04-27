@@ -24,7 +24,12 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
+        System.out.println("DebugMode: " + request.getMethod());
+        if (request.getMethod().equals("OPTIONS")) {
+            return true;
+        }
         String token = request.getHeader(AUTHORIZATION_HEADER);
+        System.out.println("DebugMode: " + token);
 
         if (token != null) {
             HttpHeaders headers = new HttpHeaders();
@@ -40,10 +45,10 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                     throw new UnauthorizedException("Invalid token credential 1");
                 }
             } catch (Exception e) {
-                System.out.println("DebugMode: " + e.getMessage());
                 throw new UnauthorizedException("Invalid token credential 2");
             }
         } else {
+            System.out.println("DebugMode: else");
             throw new UnauthorizedException("Unauthenticated");
         }
         return true;
