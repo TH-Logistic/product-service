@@ -28,15 +28,4 @@ public class CorsConfig {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
-
-//    @Override
-//    public void addCorsMappings(CorsRegistry registry) {
-//        System.out.println("DebugMode: addCorsMappings");
-//        registry.addMapping("/**")
-//                .allowedOrigins("*")
-//                .allowedMethods("GET", "POST", "PUT", "DELETE")
-//                .allowedHeaders("*")
-//                .exposedHeaders("*")
-//                .maxAge(3600);
-//    }
 }

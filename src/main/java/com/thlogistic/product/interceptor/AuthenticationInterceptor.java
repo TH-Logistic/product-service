@@ -29,7 +29,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             return true;
         }
         String token = request.getHeader(AUTHORIZATION_HEADER);
-        System.out.println("DebugMode: " + token);
 
         if (token != null) {
             HttpHeaders headers = new HttpHeaders();
@@ -42,13 +41,12 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             try {
                 ResponseEntity<BaseResponse> authResponse = restTemplate.postForEntity(AUTHORIZATION_URL, authRequest, BaseResponse.class);
                 if (authResponse.getBody() == null || !authResponse.getBody().getSuccess()) {
-                    throw new UnauthorizedException("Invalid token credential 1");
+                    throw new UnauthorizedException("Invalid token credential");
                 }
             } catch (Exception e) {
-                throw new UnauthorizedException("Invalid token credential 2");
+                throw new UnauthorizedException("Invalid token credential");
             }
         } else {
-            System.out.println("DebugMode: else");
             throw new UnauthorizedException("Unauthenticated");
         }
         return true;
