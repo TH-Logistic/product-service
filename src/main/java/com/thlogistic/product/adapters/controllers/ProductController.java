@@ -2,6 +2,7 @@ package com.thlogistic.product.adapters.controllers;
 
 import com.thlogistic.product.adapters.dtos.*;
 import com.thlogistic.product.core.usecases.CreateProductUseCase;
+import com.thlogistic.product.core.usecases.GetProductUseCase;
 import com.thlogistic.product.core.usecases.ListProductUseCase;
 import com.thlogistic.product.core.usecases.UpdateProductUseCase;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +16,13 @@ public class ProductController extends BaseController implements ProductResource
     private final CreateProductUseCase createProductUseCase;
     private final UpdateProductUseCase updateProductUseCase;
     private final ListProductUseCase listProductUseCase;
+    private final GetProductUseCase getProductUseCase;
+
+    @Override
+    public ResponseEntity<Object> getProduct(String id) {
+        GetProductResponse response = getProductUseCase.execute(id);
+        return successResponse(response, null);
+    }
 
     @Override
     public ResponseEntity<Object> listProduct(ListProductPagingRequest request) {

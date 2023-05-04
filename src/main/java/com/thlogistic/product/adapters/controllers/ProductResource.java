@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1/product")
 interface ProductResource {
+
+    @GetMapping("/{id}")
+    ResponseEntity<Object> getProduct(@PathVariable String id);
+
     @GetMapping("/list")
     ResponseEntity<Object> listProduct(@Valid ListProductPagingRequest request);
 
