@@ -1,14 +1,13 @@
 package com.thlogistic.product.adapters.controllers;
 
 import com.thlogistic.product.adapters.dtos.*;
-import com.thlogistic.product.core.usecases.CreateProductUseCase;
-import com.thlogistic.product.core.usecases.GetProductUseCase;
-import com.thlogistic.product.core.usecases.ListProductUseCase;
-import com.thlogistic.product.core.usecases.UpdateProductUseCase;
+import com.thlogistic.product.core.usecases.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,6 +16,7 @@ public class ProductController extends BaseController implements ProductResource
     private final UpdateProductUseCase updateProductUseCase;
     private final ListProductUseCase listProductUseCase;
     private final GetProductUseCase getProductUseCase;
+    private final FindAllProductUseCase findAllProductUseCase;
 
     @Override
     public ResponseEntity<Object> getProduct(String id) {
@@ -27,6 +27,12 @@ public class ProductController extends BaseController implements ProductResource
     @Override
     public ResponseEntity<Object> listProduct(ListProductPagingRequest request) {
         BasePagingResponse<GetProductResponse> result = listProductUseCase.execute(request);
+        return successResponse(result, null);
+    }
+
+    @Override
+    public ResponseEntity<Object> findProducts(GetFindAllProductRequest request) {
+        List<GetProductResponse> result = findAllProductUseCase.execute(request);
         return successResponse(result, null);
     }
 

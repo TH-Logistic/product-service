@@ -1,6 +1,7 @@
 package com.thlogistic.product.adapters.controllers;
 
 import com.thlogistic.product.adapters.dtos.CreateProductRequest;
+import com.thlogistic.product.adapters.dtos.GetFindAllProductRequest;
 import com.thlogistic.product.adapters.dtos.ListProductPagingRequest;
 import com.thlogistic.product.adapters.dtos.UpdateProductRequest;
 import jakarta.validation.Valid;
@@ -16,6 +17,9 @@ interface ProductResource {
 
     @GetMapping("/list")
     ResponseEntity<Object> listProduct(@Valid ListProductPagingRequest request);
+
+    @GetMapping("/find-all")
+    ResponseEntity<Object> findProducts(@Valid GetFindAllProductRequest request);
 
     @PostMapping
     ResponseEntity<Object> createProduct(@Valid @RequestBody CreateProductRequest request);
