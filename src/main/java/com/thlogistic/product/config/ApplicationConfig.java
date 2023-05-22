@@ -1,6 +1,7 @@
 package com.thlogistic.product.config;
 
-import com.thlogistic.product.client.AuthorizationClient;
+import com.thlogistic.product.client.auth.AuthorizationClient;
+import com.thlogistic.product.client.job.JobClient;
 import feign.Feign;
 import feign.gson.GsonDecoder;
 import feign.gson.GsonEncoder;
@@ -13,9 +14,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ApplicationConfig {
 
-    private static String domainUrl = System.getenv("DOMAIN_URL");
-
-    public static final String AUTHORIZATION_BASE_URL = "http://" + domainUrl + ":8000";
+    private static final String httpPath = "http://";
+    private static final String domainUrl = System.getenv("DOMAIN_URL");
+    public static final String AUTHORIZATION_BASE_URL = httpPath + domainUrl + ":8000";
+    public static final String JOB_BASE_URL = httpPath + domainUrl + ":8085";
 
     @Bean
     public AuthorizationClient authorizationClient() {
@@ -24,6 +26,15 @@ public class ApplicationConfig {
                 .encoder(new GsonEncoder())
                 .decoder(new GsonDecoder())
                 .target(AuthorizationClient.class, AUTHORIZATION_BASE_URL);
+    }
+
+    @Bean
+    public JobClient jobClient() {
+        return Feign.builder()
+                .client(new OkHttpClient())
+                .encoder(new GsonEncoder())
+                .decoder(new GsonDecoder())
+                .target(JobClient.class, JOB_BASE_URL);
     }
 
     @Bean

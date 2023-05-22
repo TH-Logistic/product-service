@@ -2,16 +2,12 @@ package com.thlogistic.product.interceptor;
 
 import com.thlogistic.product.adapters.dtos.BaseResponse;
 import com.thlogistic.product.aop.exception.UnauthorizedException;
-import com.thlogistic.product.client.AuthorizationClient;
-import com.thlogistic.product.client.PermissionDto;
+import com.thlogistic.product.client.auth.AuthorizationClient;
+import com.thlogistic.product.client.auth.PermissionDto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import java.io.IOException;

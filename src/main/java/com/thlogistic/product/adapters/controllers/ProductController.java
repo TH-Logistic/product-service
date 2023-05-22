@@ -17,11 +17,23 @@ public class ProductController extends BaseController implements ProductResource
     private final ListProductUseCase listProductUseCase;
     private final GetProductUseCase getProductUseCase;
     private final FindAllProductUseCase findAllProductUseCase;
+    private final GetProductDetailUseCase getProductDetailUseCase;
 
     @Override
     public ResponseEntity<Object> getProduct(String id) {
-        GetProductResponse response = getProductUseCase.execute(id);
-        return successResponse(response, null);
+        GetProductResponse result = getProductUseCase.execute(id);
+        return successResponse(result, null);
+    }
+
+    @Override
+    public ResponseEntity<Object> getProductDetail(String token, String id) {
+        GetProductDetailResponse result = getProductDetailUseCase.execute(
+                new BaseTokenRequest<>(
+                        token,
+                        id
+                )
+        );
+        return successResponse(result, null);
     }
 
     @Override

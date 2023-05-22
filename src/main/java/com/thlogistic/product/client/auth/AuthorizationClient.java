@@ -1,4 +1,4 @@
-package com.thlogistic.product.client;
+package com.thlogistic.product.client.auth;
 
 import com.thlogistic.product.adapters.dtos.BaseResponse;
 import feign.Headers;

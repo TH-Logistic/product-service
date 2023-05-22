@@ -1,6 +1,7 @@
 package com.thlogistic.product.aop;
 
 import com.thlogistic.product.adapters.dtos.ErrorResponse;
+import com.thlogistic.product.aop.exception.CustomRuntimeException;
 import com.thlogistic.product.aop.exception.DataNotFoundException;
 import com.thlogistic.product.aop.exception.InvalidProductTypeException;
 import com.thlogistic.product.aop.exception.UnauthorizedException;
@@ -44,6 +45,13 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
             UnauthorizedException ex, WebRequest request) {
         Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(CustomRuntimeException.class)
+    public ResponseEntity<Object> handleCustomRuntimeException(
+            CustomRuntimeException ex, WebRequest request) {
+        Map<String, Object> response = ErrorResponse.errorResponse(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
 

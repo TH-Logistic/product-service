@@ -1,4 +1,4 @@
-package com.thlogistic.product.client;
+package com.thlogistic.product.client.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
