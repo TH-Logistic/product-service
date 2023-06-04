@@ -1,6 +1,7 @@
 package com.thlogistic.product.adapters.controllers;
 
 import com.thlogistic.product.adapters.dtos.*;
+import com.thlogistic.product.adapters.dtos.statistic.GetProductStatisticResponse;
 import com.thlogistic.product.core.usecases.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.util.Pair;
@@ -16,6 +17,7 @@ public class ProductController extends BaseController implements ProductResource
     private final UpdateProductUseCase updateProductUseCase;
     private final ListProductUseCase listProductUseCase;
     private final GetProductUseCase getProductUseCase;
+    private final GetProductStatisticUseCase getProductStatisticUseCase;
     private final FindAllProductUseCase findAllProductUseCase;
     private final GetProductDetailUseCase getProductDetailUseCase;
 
@@ -33,6 +35,12 @@ public class ProductController extends BaseController implements ProductResource
                         id
                 )
         );
+        return successResponse(result, null);
+    }
+
+    @Override
+    public ResponseEntity<Object> getTotalProductsStatistic() {
+        GetProductStatisticResponse result = getProductStatisticUseCase.execute();
         return successResponse(result, null);
     }
 

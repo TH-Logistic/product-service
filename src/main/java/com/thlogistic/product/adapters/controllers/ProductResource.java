@@ -19,6 +19,9 @@ interface ProductResource {
     @GetMapping("detail/{id}")
     ResponseEntity<Object> getProductDetail(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @PathVariable String id);
 
+    @GetMapping("/statistic")
+    ResponseEntity<Object> getTotalProductsStatistic();
+
     @GetMapping("/list")
     ResponseEntity<Object> listProduct(@Valid ListProductPagingRequest request);
 

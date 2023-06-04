@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -13,6 +15,7 @@ public class GetJobListDto {
     String id;
     String licensePlate;
     String driverInCharge;
+    List<String> products;
     String createdAt;
     String pickUpAt;
     String unloadAt;

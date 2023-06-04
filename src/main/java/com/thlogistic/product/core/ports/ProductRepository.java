@@ -12,6 +12,7 @@ public interface ProductRepository {
     String save(ProductEntity product);
 
     Optional<ProductEntity> findById(String id);
+    List<ProductEntity> findAll();
 
     BasePagingQueryResult<List<ProductEntity>> list(Double minPrice, Double maxPrice, List<Integer> types, Integer page, Integer size);
 }

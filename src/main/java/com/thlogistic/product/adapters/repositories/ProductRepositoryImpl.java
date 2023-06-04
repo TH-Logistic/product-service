@@ -34,6 +34,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
+    public List<ProductEntity> findAll() {
+        return repository.findAll();
+    }
+
+    @Override
     public BasePagingQueryResult<List<ProductEntity>> list(Double minPrice, Double maxPrice, List<Integer> types, Integer page, Integer size) {
         Pageable pageable = PageRequest.of(page, size);
         if (maxPrice == null) {
